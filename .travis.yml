@@ -4,10 +4,8 @@ script:
 branches:
   only:
     - master
-    - release
 jdk:
   - oraclejdk8
-  - oraclejdk7
 notifications:
   slack: buttercoin:RVh8tWlAPCmdIEdtgXRXCWYS
 env:
