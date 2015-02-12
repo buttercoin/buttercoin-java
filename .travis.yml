@@ -1,7 +1,5 @@
 language: java
 sudo: false
-before_install:
-  - openssl aes-256-cbc -K $encrypted_8cf60b43064b_key -iv $encrypted_8cf60b43064b_iv -in .dcxft-repo-credentials.enc -out .dcxft-repo-credentials -d
 script:
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then sbt ++$TRAVIS_SCALA_VERSION -Dakka.test.timefactor=2 'set concurrentRestrictions in Global += Tags.limit(Tags.Test, 1)' test; else travis_retry sbt ++$TRAVIS_SCALA_VERSION -Dakka.test.timefactor=2 'set concurrentRestrictions in Global += Tags.limit(Tags.Test, 1)' test; fi
 branches:
