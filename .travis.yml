@@ -6,9 +6,9 @@ branches:
     - master
 jdk:
   - oraclejdk8
-notifications:
-  slack: buttercoin:RVh8tWlAPCmdIEdtgXRXCWYS
 env:
   global:
     - secure: "CV8PNz7MXuS8KCfuGcO1lwLExtKjoqbSpeQihzfQ8AqPde8/J6Ml5b4bVo0X8P+roDaz4RYhxGaV6XVgrgSoj205Ae3mWWOWvZU3extRvqmnvbXySz1qJEf2o8BAlSDn5rFT6OLs0f+66R2ov1GszcQFDJXjgpuJg5RQxF4VyrE="
     - secure: "Z3S3/c3eFGYwxCP60mrlGtUWdM1reoQ2ocESD8UVuchqZtbAxE+YvnatnWXXz9ofR4gFHSZL5vjElF5VTvB1kMXTevzjkhj+VK2jAXH+xLgQi/2f1U4T/j5i4qTdyByHn68r6Pu3swJx3ruEpIL71km3MFwBeylJ2T2gwrmyWAM="
+notifications:
+  slack: buttercoin:RVh8tWlAPCmdIEdtgXRXCWYS
