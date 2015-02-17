@@ -123,7 +123,7 @@ To deposit:
 import com.buttercoin.api.*;
 
 Buttercoin buttercoin = Buttercoin.newBuilder().build();
-Future<URL> withdrawalUrl = buttercoin.createDeposit("wire", "USD", new BigDecimal(100));
+Future<URL> depositUrl = buttercoin.createDeposit("wire", "USD", new BigDecimal(100));
 ```
 
 To withdraw:
