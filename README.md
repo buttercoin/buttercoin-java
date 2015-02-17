@@ -100,7 +100,7 @@ request to complete, and returns the orders.
 
 To create an order (buy bitcoin):
 
-```
+```java
 import com.buttercoin.api.*;
 import static com.buttercoin.api.CreateOrder.Instrument.*;
 import static com.buttercoin.api.Order.Side.*;
