@@ -22,6 +22,7 @@ import com.ning.http.client.providers.netty.NettyAsyncHttpProviderConfig;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -230,12 +231,22 @@ public interface Buttercoin extends UnauthenticatedAPI, AccountAPI, OrderAPI, Tr
             return this;
         }
 
+        public Builder requestTimeout(Duration duration) {
+            this.requestTimeout = (int) duration.toMillis();
+            return this;
+        }
+
         public Builder requestTimeout(long timeout, TimeUnit unit) {
             this.requestTimeout = (int) unit.toMillis(timeout);
             return this;
         }
 
-        public Builder idleTimout(long timeout, TimeUnit unit) {
+        public Builder idleTimeout(Duration duration) {
+            this.idleTimeout = (int) duration.toMillis();
+            return this;
+        }
+
+        public Builder idleTimeout(long timeout, TimeUnit unit) {
             this.idleTimeout = (int) unit.toMillis(timeout);
             return this;
         }
