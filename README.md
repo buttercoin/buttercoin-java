@@ -194,7 +194,7 @@ Buttercoin buttercoin = Buttercoin.newBuilder()
 
 #### Chaining API calls
 
-All futures returned by the client extend [ListenableFuture](https://code.google.com/p/guava-libraries/wiki/ListenableFutureExplained).
+All futures returned by the client extend Google Guava's [ListenableFuture](https://code.google.com/p/guava-libraries/wiki/ListenableFutureExplained).
 For example, let's cancel all open orders:
 
 ```java
