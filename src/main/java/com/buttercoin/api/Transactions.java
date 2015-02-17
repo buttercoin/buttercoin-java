@@ -32,13 +32,13 @@ public class Transactions implements Iterable<Transaction>, HasPagination {
         return nextPage;
     }
 
-    public int getPageSize() {
-        return pageSize;
-    }
-
     @Override
     public void setNextPage(URL nextPage) {
         this.nextPage = nextPage;
+    }
+
+    public int getPageSize() {
+        return pageSize;
     }
 
     @Override
