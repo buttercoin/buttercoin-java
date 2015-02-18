@@ -4,7 +4,7 @@ Official Java Client of the [Buttercoin API](https://developer.buttercoin.com). 
 
 ## Installation
 
-### Maven
+#### Maven
 
 Add this dependency to your project's POM file:
 
