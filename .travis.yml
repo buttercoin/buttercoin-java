@@ -1,4 +1,5 @@
 language: java
+sudo: false
 script:
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then sbt -Dakka.test.timefactor=2 'set concurrentRestrictions in Global += Tags.limit(Tags.Test, 1)' test; else travis_retry sbt -Dakka.test.timefactor=2 'set concurrentRestrictions in Global += Tags.limit(Tags.Test, 1)' test; fi
 branches:
