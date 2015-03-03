@@ -22,7 +22,7 @@ object Build extends sbt.Build {
 
       libraryDependencies += "com.google.guava" % "guava" % "18.0",
       libraryDependencies += "com.ning" % "async-http-client" % "1.9.9",
-      libraryDependencies += "com.fasterxml.jackson.core" % "jackson-databind" % "2.5.0",
+      libraryDependencies += "com.fasterxml.jackson.core" % "jackson-databind" % "2.5.1",
 
       // testing
       libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.10" % "test",

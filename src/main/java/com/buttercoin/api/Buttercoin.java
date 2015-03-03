@@ -213,6 +213,7 @@ public interface Buttercoin extends UnauthenticatedAPI, AccountAPI, OrderAPI, Tr
         private int idleTimeout = 60 * 1000;
         private boolean compressionEnforced = true;
         private ExecutorService executorService;
+        private ObjectMapper objectMapper = new ObjectMapper();
 
         private String apiKey;
         private String apiSecret;
@@ -257,7 +258,16 @@ public interface Buttercoin extends UnauthenticatedAPI, AccountAPI, OrderAPI, Tr
         }
 
         public Builder executorService(ExecutorService executorService) {
+            Preconditions.checkNotNull(executorService);
+
             this.executorService = executorService;
+            return this;
+        }
+
+        public Builder objectMapper(ObjectMapper objectMapper) {
+            Preconditions.checkNotNull(objectMapper);
+
+            this.objectMapper = objectMapper;
             return this;
         }
 
@@ -297,6 +307,8 @@ public interface Buttercoin extends UnauthenticatedAPI, AccountAPI, OrderAPI, Tr
         }
 
         public Builder nettyAsyncHttpProviderConfig(NettyAsyncHttpProviderConfig nettyAsyncHttpProviderConfig) {
+            Preconditions.checkNotNull(nettyAsyncHttpProviderConfig);
+
             this.nettyAsyncHttpProviderConfig = nettyAsyncHttpProviderConfig;
             return this;
         }
@@ -340,7 +352,7 @@ public interface Buttercoin extends UnauthenticatedAPI, AccountAPI, OrderAPI, Tr
                 httpClient = new AsyncHttpClient(clientConfigBuilder.build());
             }
 
-            objectMapper = new ObjectMapper();
+            objectMapper = builder.objectMapper;
             baseUrl = builder.baseUrl;
             apiKey = builder.apiKey;
             apiSecret = builder.apiSecret;

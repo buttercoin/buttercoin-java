@@ -12,7 +12,7 @@ Add this dependency to your project's POM file:
 <dependency>
   <groupId>com.buttercoin</groupId>
   <artifactId>buttercoin-java</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -177,6 +177,36 @@ Buttercoin buttercoin = Buttercoin.newBuilder()
     .executorService(MoreExecutors.directExecutor())
     .build();
 ```
+
+#### Jackson Afterburner
+
+To increase performance, add the [Jackson Afterburner](https://github.com/FasterXML/jackson-module-afterburner) module. Add this dependency
+to your project's POM file:
+
+```xml
+<dependency>
+  <groupId>com.fasterxml.jackson.module</groupId>
+  <artifactId>jackson-module-afterburner</artifactId>
+  <version>2.5.1</version>
+</dependency>
+```
+
+Then construct an `ObjectMapper` with the Afterburner module and pass this to the builder:
+
+```java
+import com.buttercoin.api.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
+
+ObjectMapper mapper = new ObjectMapper();
+mapper.registerModule(new AfterburnerModule());
+
+Buttercoin buttercoin = Buttercoin.newBuilder()
+    .objectMapper(mapper)
+    .build();
+```
+
+This will increase JSON databinding performance drastically at the cost of extra dependencies.
 
 #### Timeouts
 
