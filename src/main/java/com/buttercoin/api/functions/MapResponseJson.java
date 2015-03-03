@@ -21,7 +21,7 @@ public class MapResponseJson<T> implements Function<Response, T> {
     public T apply(Response response) {
         T value;
         try {
-            value = objectReader.readValue(response.getResponseBody("UTF-8"));
+            value = objectReader.readValue(response.getResponseBodyAsBytes());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
