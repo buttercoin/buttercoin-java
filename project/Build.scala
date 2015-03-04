@@ -67,6 +67,7 @@ object Build extends sbt.Build {
             <developer>
               <id>analytically</id>
               <name>Mathias Bogaert</name>
+              <email>mathias@buttercoin.com</email>
               <url>https://twitter.com/buttercoin</url>
               <organization>Buttercoin</organization>
               <organizationUrl>https://buttercoin.com</organizationUrl>
