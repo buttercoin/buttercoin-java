@@ -111,29 +111,29 @@ interface OrderAPI {
 
     ListenableFuture<Orders> getOrders(long timestamp, URL url);
 
+    ListenableFuture<Orders> getOrders(Order.Side side);
+
+    ListenableFuture<Orders> getOrders(long timestamp, Order.Side side);
+
     ListenableFuture<Orders> getOrders(Order.Status... status);
 
     ListenableFuture<Orders> getOrders(long timestamp, Order.Status... status);
-
-    ListenableFuture<Orders> getOrders(Order.Side... side);
-
-    ListenableFuture<Orders> getOrders(long timestamp, Order.Side... side);
 
     ListenableFuture<Orders> getOrders(Order.OrderType... orderType);
 
     ListenableFuture<Orders> getOrders(long timestamp, Order.OrderType... orderType);
 
-    ListenableFuture<Orders> getOrders(Order.Status status, Order.Side side, Order.OrderType orderType);
+    ListenableFuture<Orders> getOrders(Order.Side side, Order.Status status, Order.OrderType orderType);
 
-    ListenableFuture<Orders> getOrders(long timestamp, Order.Status status, Order.Side side, Order.OrderType orderType);
+    ListenableFuture<Orders> getOrders(long timestamp, Order.Side side, Order.Status status, Order.OrderType orderType);
 
-    ListenableFuture<Orders> getOrders(Iterable<Order.Status> status, Iterable<Order.Side> sides, Iterable<Order.OrderType> orderTypes);
+    ListenableFuture<Orders> getOrders(Order.Side side, Iterable<Order.Status> status, Iterable<Order.OrderType> orderTypes);
 
-    ListenableFuture<Orders> getOrders(long timestamp, Iterable<Order.Status> status, Iterable<Order.Side> sides, Iterable<Order.OrderType> orderTypes);
+    ListenableFuture<Orders> getOrders(long timestamp, Order.Side side, Iterable<Order.Status> status, Iterable<Order.OrderType> orderTypes);
 
-    ListenableFuture<Orders> getOrders(Iterable<Order.Status> status, Iterable<Order.Side> sides, Iterable<Order.OrderType> orderTypes, int page, int pageSize);
+    ListenableFuture<Orders> getOrders(Order.Side side, Iterable<Order.Status> status, Iterable<Order.OrderType> orderTypes, int page, int pageSize);
 
-    ListenableFuture<Orders> getOrders(long timestamp, Iterable<Order.Status> status, Iterable<Order.Side> sides, Iterable<Order.OrderType> orderTypes, int page, int pageSize);
+    ListenableFuture<Orders> getOrders(long timestamp, Order.Side side, Iterable<Order.Status> status, Iterable<Order.OrderType> orderTypes, int page, int pageSize);
 
     ListenableFuture<Orders> getOrders(String... orderIds);
 
@@ -462,23 +462,23 @@ public interface Buttercoin extends UnauthenticatedAPI, AccountAPI, OrderAPI, Tr
         }
 
         @Override
+        public ListenableFuture<Orders> getOrders(Order.Side side) {
+            return getOrders(System.currentTimeMillis(), side);
+        }
+
+        @Override
+        public ListenableFuture<Orders> getOrders(long timestamp, Order.Side side) {
+            return getOrders(timestamp, side, Lists.newArrayList(), Lists.newArrayList());
+        }
+
+        @Override
         public ListenableFuture<Orders> getOrders(Order.Status... status) {
             return getOrders(System.currentTimeMillis(), status);
         }
 
         @Override
         public ListenableFuture<Orders> getOrders(long timestamp, Order.Status... status) {
-            return getOrders(timestamp, Arrays.asList(status), null, null);
-        }
-
-        @Override
-        public ListenableFuture<Orders> getOrders(Order.Side... side) {
-            return getOrders(System.currentTimeMillis(), side);
-        }
-
-        @Override
-        public ListenableFuture<Orders> getOrders(long timestamp, Order.Side... side) {
-            return getOrders(timestamp, null, Arrays.asList(side), null);
+            return getOrders(timestamp, null, Arrays.asList(status), null);
         }
 
         @Override
@@ -492,37 +492,37 @@ public interface Buttercoin extends UnauthenticatedAPI, AccountAPI, OrderAPI, Tr
         }
 
         @Override
-        public ListenableFuture<Orders> getOrders(Order.Status status, Order.Side side, Order.OrderType orderType) {
-            return getOrders(System.currentTimeMillis(), status, side, orderType);
+        public ListenableFuture<Orders> getOrders(Order.Side side, Order.Status status, Order.OrderType orderType) {
+            return getOrders(System.currentTimeMillis(), side, status, orderType);
         }
 
         @Override
-        public ListenableFuture<Orders> getOrders(long timestamp, Order.Status status, Order.Side side, Order.OrderType orderType) {
-            return getOrders(timestamp, Lists.newArrayList(status), Lists.newArrayList(side), Lists.newArrayList(orderType));
+        public ListenableFuture<Orders> getOrders(long timestamp, Order.Side side, Order.Status status, Order.OrderType orderType) {
+            return getOrders(timestamp, side, Lists.newArrayList(status), Lists.newArrayList(orderType));
         }
 
         @Override
-        public ListenableFuture<Orders> getOrders(Iterable<Order.Status> status, Iterable<Order.Side> sides, Iterable<Order.OrderType> orderTypes) {
-            return getOrders(System.currentTimeMillis(), status, sides, orderTypes);
+        public ListenableFuture<Orders> getOrders(Order.Side side, Iterable<Order.Status> status, Iterable<Order.OrderType> orderTypes) {
+            return getOrders(System.currentTimeMillis(), side, status, orderTypes);
         }
 
         @Override
-        public ListenableFuture<Orders> getOrders(long timestamp, Iterable<Order.Status> status, Iterable<Order.Side> sides, Iterable<Order.OrderType> orderTypes) {
-            return getOrders(timestamp, status, sides, orderTypes, 0, 0);
+        public ListenableFuture<Orders> getOrders(long timestamp, Order.Side side, Iterable<Order.Status> status, Iterable<Order.OrderType> orderTypes) {
+            return getOrders(timestamp, side, status, orderTypes, 0, 0);
         }
 
         @Override
-        public ListenableFuture<Orders> getOrders(Iterable<Order.Status> status, Iterable<Order.Side> sides, Iterable<Order.OrderType> orderTypes, int page, int pageSize) {
-            return getOrders(System.currentTimeMillis(), status, sides, orderTypes, page, pageSize);
+        public ListenableFuture<Orders> getOrders(Order.Side side, Iterable<Order.Status> status, Iterable<Order.OrderType> orderTypes, int page, int pageSize) {
+            return getOrders(System.currentTimeMillis(), side, status, orderTypes, page, pageSize);
         }
 
         @Override
-        public ListenableFuture<Orders> getOrders(long timestamp, Iterable<Order.Status> status, Iterable<Order.Side> sides, Iterable<Order.OrderType> orderTypes, int page, int pageSize) {
+        public ListenableFuture<Orders> getOrders(long timestamp, Order.Side side, Iterable<Order.Status> status, Iterable<Order.OrderType> orderTypes, int page, int pageSize) {
             AsyncHttpClient.BoundRequestBuilder builder = httpClient.prepareGet(baseUrl + "/v1/orders")
                     .addHeader("X-Buttercoin-Date", "" + timestamp);
 
+            if (side != null) builder.addQueryParam("side", side.getName());
             if (status != null && status.iterator().hasNext()) builder.addQueryParam("status", mkString(status, ","));
-            if (sides != null && sides.iterator().hasNext()) builder.addQueryParam("side", mkString(sides, ","));
             if (orderTypes != null && orderTypes.iterator().hasNext())
                 builder.addQueryParam("orderType", mkString(orderTypes, ","));
 

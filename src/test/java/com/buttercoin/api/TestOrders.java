@@ -39,7 +39,7 @@ public class TestOrders extends ButtercoinAPITest {
 
     @Test
     public void testOrders() throws Exception {
-        Orders orders = buttercoin.getOrders(Filled, Buy, Market).get();
+        Orders orders = buttercoin.getOrders(Buy, Filled, Market).get();
         assertThat(orders.getOrders().size()).isGreaterThan(0);
     }
 }
