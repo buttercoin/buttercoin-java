@@ -21,5 +21,8 @@ public abstract class ButtercoinAPITest {
         }
     };
 
-    protected Buttercoin buttercoin = Buttercoin.newBuilder().requestTimeout(3, TimeUnit.SECONDS).build();
+    protected Buttercoin buttercoin = Buttercoin.newBuilder().useSandbox()
+            .apiKey("ce8xbpzqfd16krugtqvqcv5ndfmsux1o")
+            .apiSecret("3rgrLVW4oX7sWdv40w40ScxSBqp2z9jv")
+            .requestTimeout(3, TimeUnit.SECONDS).build();
 }

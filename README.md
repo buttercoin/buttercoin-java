@@ -12,7 +12,7 @@ Add this dependency to your project's POM file:
 <dependency>
   <groupId>com.buttercoin</groupId>
   <artifactId>buttercoin-java</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 

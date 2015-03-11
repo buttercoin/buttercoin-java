@@ -6,8 +6,10 @@ import java.math.BigDecimal;
 import java.net.URL;
 
 import static com.buttercoin.api.Order.OrderType.Limit;
+import static com.buttercoin.api.Order.OrderType.Market;
 import static com.buttercoin.api.Order.Side.Buy;
 import static com.buttercoin.api.Order.Status.Canceled;
+import static com.buttercoin.api.Order.Status.Filled;
 import static com.buttercoin.api.Order.Status.Opened;
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -33,5 +35,11 @@ public class TestOrders extends ButtercoinAPITest {
         assertThat(canceledOrder.getPrice().compareTo(new BigDecimal(10)) == 0);
         assertThat(canceledOrder.getQuantity().compareTo(new BigDecimal(1)) == 0);
         assertThat(canceledOrder.getEvents().size() == 2);
+    }
+
+    @Test
+    public void testOrders() throws Exception {
+        Orders orders = buttercoin.getOrders(Filled, Buy, Market).get();
+        assertThat(orders.getOrders().size()).isGreaterThan(0);
     }
 }

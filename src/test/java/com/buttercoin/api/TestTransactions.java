@@ -8,6 +8,6 @@ public class TestTransactions extends ButtercoinAPITest {
     @Test
     public void testTransactions() throws Exception {
         Transactions transactions = buttercoin.getTransactions(Transaction.Status.Funded).get();
-        assertThat(transactions.getTransactions().size()).isGreaterThan(2);
+        assertThat(transactions.getTransactions().size()).isGreaterThan(0);
     }
 }

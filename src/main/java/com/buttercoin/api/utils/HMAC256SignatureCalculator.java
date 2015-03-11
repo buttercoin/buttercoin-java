@@ -40,19 +40,11 @@ public final class HMAC256SignatureCalculator implements SignatureCalculator {
 
     @Override
     public void calculateAndAddSignature(Request request, RequestBuilderBase<?> builder) {
-        StringBuilder params = new StringBuilder();
-
-        for (Param param : request.getQueryParams()) {
-            if (params.length() > 0) params.append('&');
-            params.append(param.getName()).append('=').append(UrlEscapers.urlFormParameterEscaper().escape(param.getValue()));
-        }
-
         long now = Long.parseLong(request.getHeaders().getFirstValue("X-Buttercoin-Date"));
 
         StringBuilder signature = new StringBuilder();
         signature.append(now);
         signature.append(request.getUrl());
-        if (params.length() > 0) signature.append('?').append(params.toString());
         if (request.getStringData() != null && request.getStringData().length() > 0)
             signature.append(request.getStringData());
 
